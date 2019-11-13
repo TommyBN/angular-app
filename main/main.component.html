@@ -1,0 +1,21 @@
+<nav><h1>My Store</h1></nav>
+<button> &#x2b; Add</button>
+<input  type="search" [(ngModel)]="filterValue" placeholder="search products">
+sort by 
+<select #sort (click)="changeSort(sort.value)">
+    <option  *ngFor="let key of productKeys" [value]="key">{{key}}</option>
+  </select>
+
+<div class="container responsive-break">
+  
+  <app-products *ngIf="!errorMsg" [sortByMe]="sortByMe" 
+  (productSelected)="showProductDetails($event)" 
+  [products]="products" [filterValue]="filterValue">
+  </app-products>
+
+  <h1 class="no-data" *ngIf="errorMsg">No data to display.</h1>
+
+  <app-product-details (submitted)="saveChanges($event)" 
+  [product]="currentProduct"></app-product-details>  
+
+</div>

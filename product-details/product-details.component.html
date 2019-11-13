@@ -1,0 +1,49 @@
+<div class="container">
+    <h1>{{product.name}} Details</h1>
+    <div class="image">
+        <img [src]="product.thumbnailUrl" alt="">
+    </div>
+    <form #productForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-container">
+            <div class="form-group">
+                <div>
+                    <label for="name">Name</label>
+                </div>
+                <input type="text" id="name" [(ngModel)]="product.name" name="name" required>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="description">Description</label>
+                </div>
+                <input type="text" class="box" id="description" [(ngModel)]="product.description" name="description">
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="price">Price</label>
+                </div>
+                <input type="number" id="price" min="3" [(ngModel)]="product.price" name="price" required> &#x24;
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="creationDate">creationDate</label>
+                </div>
+                <input type="number" id="creationDate" [(ngModel)]="product.creationDate" name="creationDate" required>
+                {{product.creationDate | date:full}}
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="price">id</label>
+                </div>
+                <input type="number" id="id" min="1" max="1" [(ngModel)]="product.id" name="id" required>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="url">url</label>
+                </div>
+                <input type="text" id="url" [(ngModel)]="product.url" name="url">
+            </div>
+
+        </div>
+        <button [class.disabled]="productForm.invalid" [disabled]="productForm.invalid" type="submit">Save</button>
+    </form>
+</div>
